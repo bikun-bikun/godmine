@@ -27,13 +27,17 @@ type issue struct {
 	CreatedOn           string      `json:"created_on"`
 	UpdatedOn           string      `json:"updated_on"`
 	ClosedOn            string      `json:"closed_on"`
-	Relations           []*relation `json:"relations"`
+	Relations           []*Relation `json:"relations"`
+	Journals            []*Journal  `json:"journals"`
 }
 
-type relation struct {
-	id            int
-	issue_id      int
-	issue_to_id   int
-	relation_type string
-	delay         string
+type Relation struct {
+	Id           int    `json:"id"`
+	IssueId      int    `json:"issue_id"`
+	IssueToId    int    `json:"issue_to_id"`
+	RelationType string `json:"relation_type"`
+	Delay        string `json:"delay"`
+}
+
+type Journal struct {
 }
