@@ -22,6 +22,7 @@ func NewClient(endpoint, apikey string) *Client {
 type Id struct {
 	ID int `json:"id"`
 }
+
 type IdName struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`

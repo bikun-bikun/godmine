@@ -1,5 +1,9 @@
 package redmine
 
+type issueResult struct {
+	Issue Issue `json:"issue"`
+}
+
 type issuesResult struct {
 	Issues     []*Issue
 	TotalCount int
