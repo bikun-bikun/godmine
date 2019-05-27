@@ -1,13 +1,13 @@
 package redmine
 
 type issuesResult struct {
-	Issues     []issue
+	Issues     []*Issue
 	TotalCount int
 	Offset     int
 	Limit      int
 }
 
-type issue struct {
+type Issue struct {
 	Id                  int         `json:"id"`
 	Project             *IdName     `json:"project"`
 	Tracker             *IdName     `json:"tracker"`
@@ -40,4 +40,17 @@ type Relation struct {
 }
 
 type Journal struct {
+	Id           int              `json:"id"`
+	User         IdName           `json:"user"`
+	Notes        string           `json:"notes"`
+	CreatedOn    string           `json:"created_on"`
+	PrivateNotes bool             `json:"private_notes"`
+	Details      []*JournalDetail `json:"details"`
+}
+
+type JournalDetail struct {
+	Property string `json:"property"`
+	Name     string `json:"name"`
+	OldValue string `json:"old_value"`
+	NewValue string `json:"new_value"`
 }
