@@ -5,7 +5,10 @@ type projectResult struct {
 }
 
 type projectsResult struct {
-	Projects []*Project `json:"projects"`
+	Projects   []*Project `json:"projects"`
+	TotalCount int        `json:"total_count"`
+	Offset     int        `json:"offset"`
+	Limit      int        `json:"limit"`
 }
 
 type Project struct {
