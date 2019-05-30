@@ -20,7 +20,8 @@ type Issue struct {
 	Status              *IdName     `yaml,json:"status"`
 	Priority            *IdName     `yaml,json:"priority"`
 	Author              *IdName     `yaml,json:"author"`
-	AssignedTo          *IdName     `yaml,json:"assigned_to"`
+	AssignedTo          *IdName     `json:"assigned_to"`
+	AssignedMembers     []int       `yaml:"members"`
 	Parent              *Id         `yaml,json:"parent"`
 	Subject             string      `yaml,json:"subject"`
 	Description         string      `yaml,json:"description"`
