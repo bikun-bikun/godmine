@@ -1,6 +1,9 @@
 package redmine
 
-import "net/http"
+import (
+	"encoding/json"
+	"net/http"
+)
 
 type issueResult struct {
 	Issue Issue `json:"issue" yaml:"issue"`
@@ -62,8 +65,7 @@ type JournalDetail struct {
 	NewValue string `json:"new_value"`
 }
 
-func (c *Client) getIssues(projectID interface{}) ([]*Issue, error) {
-	res, err := c.Get()
+func (c *Client) GetIssues(projectID interface{}) ([]*Issue, error) {
 	url := c.endpoint + "/issues.json"
 
 	req, _ := http.NewRequest("GET", url, nil)
@@ -73,5 +75,12 @@ func (c *Client) getIssues(projectID interface{}) ([]*Issue, error) {
 
 	res, _ := c.Do(req)
 
-	return nil, nil
+	var ir issuesResult
+	decoder := json.NewDecoder(res.Body)
+	err := decoder.Decode(&ir)
+	if err != nil {
+		return nil, err
+	}
+
+	return ir.Issues, nil
 }

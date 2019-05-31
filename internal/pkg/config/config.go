@@ -1,17 +1,31 @@
 package config
 
+import (
+	"github.com/go-yaml/yaml"
+	"io/ioutil"
+)
+
 const (
-	basePath  string = "./"
+	basePath  string = "./config/"
 	extension string = ".yml"
 )
 
 type Config struct {
-	endpoint string
-	apikey   string
+	Endpoint string `yaml:"endpoint"`
+	Apikey   string `yaml:"apikey"`
 }
 
-func (c *Config) Load(profile string) (*Config, error) {
-	return nil, nil
+func Load(profile string) (*Config, error) {
+	buf, err := ioutil.ReadFile(getFilePath(profile))
+	if err != nil {
+		return nil, err
+	}
+
+	var cnf Config
+	if err := yaml.Unmarshal(buf, &cnf); err != nil {
+		return nil, err
+	}
+	return &cnf, nil
 }
 
 func getFilePath(profile string) (path string) {
