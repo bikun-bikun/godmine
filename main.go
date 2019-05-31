@@ -3,10 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/bikun-bikun/godmine/internal/pkg/config"
 	"os"
 
+	"github.com/bikun-bikun/godmine/internal/pkg/config"
 	"github.com/bikun-bikun/godmine/pkg/redmine"
+
 	"github.com/urfave/cli"
 )
 
@@ -31,7 +32,6 @@ func main() {
 		}
 		out, err := json.Marshal(i)
 		if err != nil {
-			fmt.Println("marshal")
 			fmt.Print(err)
 			return nil
 		}
