@@ -17,28 +17,28 @@ type issuesResult struct {
 }
 
 type Issue struct {
-	Id                  int         `yaml,json:"id"`
-	Project             *IdName     `yaml,json:"project"`
-	Tracker             *IdName     `yaml,json:"tracker"`
-	Status              *IdName     `yaml,json:"status"`
-	Priority            *IdName     `yaml,json:"priority"`
-	Author              *IdName     `yaml,json:"author"`
+	Id                  int         `yaml:"id" json:"id"`
+	Project             *IdName     `yaml:"project" json:"project"`
+	Tracker             *IdName     `yaml:"tracker" json:"tracker"`
+	Status              *IdName     `yaml:"status" json:"status"`
+	Priority            *IdName     `yaml:"priority" json:"priority"`
+	Author              *IdName     `yaml:"author" json:"author"`
 	AssignedTo          *IdName     `json:"assigned_to"`
 	AssignedMembers     []int       `yaml:"members"`
-	Parent              *Id         `yaml,json:"parent"`
-	Subject             string      `yaml,json:"subject"`
-	Description         string      `yaml,json:"description"`
-	StartDate           string      `yaml,json:"start_date"`
-	DueDate             string      `yaml,json:"due_date"`
-	DoneRatio           int         `yaml,json:"done_date"`
-	IsPrivate           bool        `yaml,json:"is_private"`
-	EstimatedHours      int         `yaml,json:"estimated_hours"`
-	TotalEstimatedHours int         `yaml,json:"total_estimated_hours"`
-	CreatedOn           string      `yaml,json:"created_on"`
-	UpdatedOn           string      `yaml,json:"updated_on"`
-	ClosedOn            string      `yaml,json:"closed_on"`
-	Relations           []*Relation `yaml,json:"relations"`
-	Journals            []*Journal  `yaml,json:"journals"`
+	Parent              *Id         `yaml:"parent" json:"parent"`
+	Subject             string      `yaml:"subject" json:"subject"`
+	Description         string      `yaml:"description" json:"description"`
+	StartDate           string      `yaml:"start_date" json:"start_date"`
+	DueDate             string      `yaml:"due_date" json:"due_date"`
+	DoneRatio           int         `yaml:"done_date" json:"done_date"`
+	IsPrivate           bool        `yaml:"is_private" json:"is_private"`
+	EstimatedHours      float32     `yaml:"estimated_hours" json:"estimated_hours"`
+	TotalEstimatedHours float32     `yaml:"total_estimated_hours" json:"total_estimated_hours"`
+	CreatedOn           string      `yaml:"created_on" json:"created_on"`
+	UpdatedOn           string      `yaml:"updated_on" json:"updated_on"`
+	ClosedOn            string      `yaml:"closed_on" json:"closed_on"`
+	Relations           []*Relation `yaml:"relations" json:"relations"`
+	Journals            []*Journal  `yaml:"journals" json:"journals"`
 }
 
 type Relation struct {

@@ -21,11 +21,22 @@ func main() {
 		cnf, err := config.Load("default")
 		if err != nil {
 			fmt.Print(err)
+			return nil
 		}
 		cl := redmine.NewClient(cnf.Endpoint, cnf.Apikey)
 		i, err := cl.GetIssues(1)
-		out, _ := json.Marshal(i)
-		fmt.Printf(string(out))
+		if err != nil {
+			fmt.Print(err)
+			return nil
+		}
+		out, err := json.Marshal(i)
+		if err != nil {
+			fmt.Println("marshal")
+			fmt.Print(err)
+			return nil
+		}
+		fmt.Print(string(out))
+
 		return nil
 	}
 
