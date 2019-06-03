@@ -2,8 +2,8 @@ package config
 
 import (
 	"errors"
+	"github.com/bikun-bikun/godmine/internal/pkg/file"
 	"io/ioutil"
-	"os"
 
 	"github.com/go-yaml/yaml"
 )
@@ -20,7 +20,7 @@ type Config struct {
 
 func Load(profile string) (*Config, error) {
 	path := getFilePath(profile)
-	if !exists(path) {
+	if !file.Exists(path) {
 		return nil, errors.New("Config not exists!!")
 	}
 
@@ -38,23 +38,19 @@ func Load(profile string) (*Config, error) {
 
 func NewConfig(profile string, ep string, k string) error {
 	path := getFilePath(profile)
-	if exists(path) {
+	if file.Exists(path) {
 		return errors.New("File Exists")
 	}
+
 	c := &Config{ep, k}
 	y, err := yaml.Marshal(c)
 	if err != nil {
 		return errors.New("yaml Marshal error")
 	}
-	if err = ioutil.WriteFile(path, y, 0644); err != nil {
+	if err = file.Save(path, y); err != nil {
 		return errors.New("Create Config File error")
 	}
 	return nil
-}
-
-func exists(path string) bool {
-	_, err := os.Stat(path)
-	return err == nil
 }
 
 func getFilePath(profile string) (path string) {
