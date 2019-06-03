@@ -1,4 +1,9 @@
 .idea
 
-config/*.yml
+config/
+!config/.gitkeep
+
+template/
+!template/.gitkeep
+
 main

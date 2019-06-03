@@ -2,9 +2,10 @@ package config
 
 import (
 	"errors"
-	"github.com/go-yaml/yaml"
 	"io/ioutil"
 	"os"
+
+	"github.com/go-yaml/yaml"
 )
 
 const (
@@ -18,7 +19,12 @@ type Config struct {
 }
 
 func Load(profile string) (*Config, error) {
-	buf, err := ioutil.ReadFile(getFilePath(profile))
+	path := getFilePath(profile)
+	if !exists(path) {
+		return nil, errors.New("Config not exists!!")
+	}
+
+	buf, err := ioutil.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
@@ -32,7 +38,7 @@ func Load(profile string) (*Config, error) {
 
 func NewConfig(profile string, ep string, k string) error {
 	path := getFilePath(profile)
-	if !Exists(path) {
+	if exists(path) {
 		return errors.New("File Exists")
 	}
 	c := &Config{ep, k}
@@ -46,10 +52,11 @@ func NewConfig(profile string, ep string, k string) error {
 	return nil
 }
 
-func Exists(path string) bool {
+func exists(path string) bool {
 	_, err := os.Stat(path)
 	return err == nil
 }
+
 func getFilePath(profile string) (path string) {
 	path = basePath + profile + extension
 	return
