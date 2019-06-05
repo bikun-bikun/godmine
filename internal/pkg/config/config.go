@@ -43,11 +43,11 @@ func NewConfig(profile string, ep string, k string) error {
 	}
 
 	c := &Config{ep, k}
-	y, err := yaml.Marshal(c)
+	yml, err := yaml.Marshal(c)
 	if err != nil {
 		return errors.New("yaml Marshal error")
 	}
-	if err = file.Save(path, y); err != nil {
+	if err = file.Save(path, yml); err != nil {
 		return errors.New("Create Config File error")
 	}
 	return nil

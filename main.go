@@ -1,12 +1,8 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
+	"github.com/bikun-bikun/godmine/cmd"
 	"os"
-
-	"github.com/bikun-bikun/godmine/internal/pkg/config"
-	"github.com/bikun-bikun/godmine/pkg/redmine"
 
 	"github.com/urfave/cli"
 )
@@ -14,31 +10,11 @@ import (
 func main() {
 	app := cli.NewApp()
 
-	app.Name = "gome"
+	app.Name = "godmine"
 	app.Usage = "This app redmine api kick cli"
 	app.Version = "0.0.1"
 
-	app.Action = func(c *cli.Context) error {
-		cnf, err := config.Load("default")
-		if err != nil {
-			fmt.Print(err)
-			return nil
-		}
-		cl := redmine.NewClient(cnf.Endpoint, cnf.Apikey)
-		i, err := cl.GetIssues(1)
-		if err != nil {
-			fmt.Print(err)
-			return nil
-		}
-		out, err := json.Marshal(i)
-		if err != nil {
-			fmt.Print(err)
-			return nil
-		}
-		fmt.Print(string(out))
-
-		return nil
-	}
+	app.Commands, _ = cmd.NewCommand()
 
 	app.Run(os.Args)
 }
