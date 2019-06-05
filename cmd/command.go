@@ -39,6 +39,7 @@ func NewCommand() (cmd []cli.Command, err error) {
 }
 
 func issue(ctx *cli.Context) error {
-	fmt.Println("main command")
+
+	fmt.Printf("main command profile : %+v\n", ctx.String("profile"))
 	return nil
 }
