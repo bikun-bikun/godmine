@@ -6,11 +6,13 @@ import (
 )
 
 var GlobalFlags = []cli.Flag{
-	cli.StringFlag{
-		Name:  "profile",
-		Usage: "Change Profile",
-		Value: "default",
-	},
+	profile,
+}
+
+var profile = cli.StringFlag{
+	Name:  "profile, p",
+	Usage: "Change Profile",
+	Value: "default",
 }
 
 func NewCommand() (cmd []cli.Command, err error) {
@@ -32,6 +34,9 @@ func NewCommand() (cmd []cli.Command, err error) {
 					},
 				},
 			},
+			Flags: []cli.Flag{
+				profile,
+			},
 		},
 	}
 
@@ -40,6 +45,11 @@ func NewCommand() (cmd []cli.Command, err error) {
 
 func issue(ctx *cli.Context) error {
 
-	fmt.Printf("main command profile : %+v\n", ctx.GlobalString("profile"))
+	fmt.Printf("main command profile : %+v\n", ctx.String("profile"))
+	return nil
+}
+
+func issueTemplate(ctx *cli.Context) error {
+
 	return nil
 }
