@@ -19,7 +19,7 @@ type Membership struct {
 	Roles   []*IdName `json:"roles"`
 }
 
-func (c *Client) GetMemberships(project string) ([]*Membership, error) {
+func (c *Client) GetMemberships(project string) ([]Membership, error) {
 	url := c.endpoint + "/memberships..json"
 
 	req, _ := http.NewRequest("GET", url, nil)

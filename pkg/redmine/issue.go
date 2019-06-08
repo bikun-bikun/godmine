@@ -10,10 +10,10 @@ type issueResult struct {
 }
 
 type issuesResult struct {
-	Issues     []*Issue `json:"issues"`
-	TotalCount int      `json:"total_count"`
-	Offset     int      `json:"offset"`
-	Limit      int      `json:"limit"`
+	Issues     []Issue `json:"issues"`
+	TotalCount int     `json:"total_count"`
+	Offset     int     `json:"offset"`
+	Limit      int     `json:"limit"`
 }
 
 type Issue struct {
@@ -65,7 +65,7 @@ type JournalDetail struct {
 	NewValue string `json:"new_value"`
 }
 
-func (c *Client) GetIssues(projectID interface{}) ([]*Issue, error) {
+func (c *Client) GetIssues(projectID interface{}) ([]Issue, error) {
 	url := c.endpoint + "/issues.json"
 
 	req, _ := http.NewRequest("GET", url, nil)
