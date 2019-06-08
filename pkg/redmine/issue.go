@@ -74,9 +74,9 @@ func (c *Client) GetIssues(projectID interface{}) ([]*Issue, error) {
 	req.Header.Add("Content-Type", "application/json")
 
 	res, _ := c.Do(req)
-
 	var ir issuesResult
 	decoder := json.NewDecoder(res.Body)
+	defer res.Body.Close()
 	err := decoder.Decode(&ir)
 	if err != nil {
 		return nil, err
