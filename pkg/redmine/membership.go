@@ -20,7 +20,7 @@ type Membership struct {
 }
 
 func (c *Client) GetMemberships(project string) ([]Membership, error) {
-	url := c.endpoint + "/memberships..json"
+	url := c.endpoint + "/memberships.json"
 
 	req, _ := http.NewRequest("GET", url, nil)
 

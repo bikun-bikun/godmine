@@ -49,7 +49,7 @@ func issue(ctx *cli.Context) error {
 	return nil
 }
 
-func issueTemplate(ctx *cli.Context) error {
+func createIssueTemplate(ctx *cli.Context) error {
 
 	return nil
 }
