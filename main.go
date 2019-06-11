@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/bikun-bikun/godmine/cmd"
 	"os"
 
@@ -16,6 +17,11 @@ func main() {
 
 	app.Flags = cmd.GlobalFlags
 	app.Commands, _ = cmd.NewCommand()
+
+	app.Before = func(ctx *cli.Context) error {
+		fmt.Println(ctx.String("profile"))
+		return nil
+	}
 
 	app.Run(os.Args)
 }

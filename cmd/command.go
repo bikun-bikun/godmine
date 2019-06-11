@@ -15,6 +15,12 @@ var profile = cli.StringFlag{
 	Value: "default",
 }
 
+var create = cli.StringFlag{
+	Name:  "create, c",
+	Usage: "Create",
+	Value: "",
+}
+
 func NewCommand() (cmd []cli.Command, err error) {
 
 	cmd = []cli.Command{
@@ -28,14 +34,18 @@ func NewCommand() (cmd []cli.Command, err error) {
 					Name:    "template",
 					Usage:   "",
 					Aliases: []string{"t"},
-					Action: func(cxt *cli.Context) error {
-						fmt.Println("suncommand template")
-						return nil
+					Action: func(ctx *cli.Context) {
+						fmt.Println("suncommand template: ", ctx.String("profile"))
+					},
+					Flags: []cli.Flag{
+						profile,
+						create,
 					},
 				},
 			},
 			Flags: []cli.Flag{
 				profile,
+				create,
 			},
 		},
 	}
@@ -49,7 +59,7 @@ func issue(ctx *cli.Context) error {
 	return nil
 }
 
-func createIssueTemplate(ctx *cli.Context) error {
+func issueTemplate(ctx *cli.Context) error {
 
 	return nil
 }
