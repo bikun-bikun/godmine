@@ -1,7 +1,12 @@
 package cmd
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
+	cf "github.com/bikun-bikun/godmine/internal/pkg/config"
+	"github.com/bikun-bikun/godmine/pkg/redmine"
+
 	"github.com/urfave/cli"
 )
 
@@ -19,6 +24,21 @@ var create = cli.StringFlag{
 	Name:  "create, c",
 	Usage: "Create",
 	Value: "",
+}
+
+var endpoit = cli.StringFlag{
+	Name:  "endpoint",
+	Value: "",
+}
+
+var config = cli.Command{
+	Name:    "config",
+	Usage:   "",
+	Aliases: []string{"c"},
+	Flags: []cli.Flag{
+		profile,
+		create,
+	},
 }
 
 func NewCommand() (cmd []cli.Command, err error) {
@@ -55,7 +75,19 @@ func NewCommand() (cmd []cli.Command, err error) {
 
 func issue(ctx *cli.Context) error {
 
-	fmt.Printf("main command profile : %+v\n", ctx.String("profile"))
+	cnf, err := cf.Load(ctx.String("profile"))
+	if err != nil {
+		return errors.New("config load")
+	}
+	c := redmine.NewClient(cnf.Endpoint, cnf.Apikey)
+
+	ir, err := c.GetIssues("")
+
+	var date []byte
+
+	date, err = json.Marshal(ir)
+	fmt.Println(string(date))
+
 	return nil
 }
 
