@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/bikun-bikun/godmine/cmd"
 	"os"
 
