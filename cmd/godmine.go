@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/bikun-bikun/godmine/cmd"
+	"github.com/urfave/cli"
 	"os"
 
-	"github.com/urfave/cli"
+	"github.com/bikun-bikun/godmine/internal/pkg/cli/commands"
 )
 
 func main() {
@@ -14,8 +14,8 @@ func main() {
 	app.Usage = "This app redmine api kick cli"
 	app.Version = "0.0.1"
 
-	app.Flags = cmd.GlobalFlags
-	app.Commands, _ = cmd.NewCommand()
+	//	app.Flags = cmd.GlobalFlags
+	app.Commands = commands.NewCommand()
 
 	app.Run(os.Args)
 }

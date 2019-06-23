@@ -7,3 +7,6 @@ template/
 !template/.gitkeep
 
 main
+
+cmd/config
+.DS_Store
