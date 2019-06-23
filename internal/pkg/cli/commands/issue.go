@@ -29,5 +29,11 @@ var issue = cli.Command{
 	Flags: []cli.Flag{
 		flags.Profile,
 		flags.Create,
+		flags.Project,
+		flags.List,
 	},
+}
+
+var createIssue = cli.Command{
+	Name: "Create",
 }

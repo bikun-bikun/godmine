@@ -14,7 +14,6 @@ func main() {
 	app.Usage = "This app redmine api kick cli"
 	app.Version = "0.0.1"
 
-	//	app.Flags = cmd.GlobalFlags
 	app.Commands = commands.NewCommand()
 
 	app.Run(os.Args)

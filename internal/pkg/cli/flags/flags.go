@@ -28,3 +28,12 @@ var Name = cli.StringFlag{
 	Name:  "name, n",
 	Value: "default",
 }
+
+var Project = cli.StringFlag{
+	Name:  "project, prj",
+	Value: "",
+}
+
+var List = cli.BoolFlag{
+	Name: "list, l",
+}

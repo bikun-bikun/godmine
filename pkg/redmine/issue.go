@@ -24,7 +24,7 @@ type Issue struct {
 	Priority            *IdName     `yaml:"priority" json:"priority"`
 	Author              *IdName     `yaml:"author" json:"author"`
 	AssignedTo          *IdName     `json:"assigned_to"`
-	AssignedMembers     []int       `yaml:"members"`
+	AssignedMembers     []int       `yaml:"members" json:"-"`
 	Parent              *Id         `yaml:"parent" json:"parent"`
 	Subject             string      `yaml:"subject" json:"subject"`
 	Description         string      `yaml:"description" json:"description"`
@@ -65,9 +65,14 @@ type JournalDetail struct {
 	NewValue string `json:"new_value"`
 }
 
-func (c *Client) GetIssues(projectID interface{}) ([]Issue, error) {
-	url := c.endpoint + "/issues.json"
+func (c *Client) GetIssues(projectID string) ([]Issue, error) {
 
+	url := c.endpoint
+	if projectID != "" {
+		url = url + "/projects/" + projectID
+	}
+
+	url = url + "/issues.json"
 	req, _ := http.NewRequest("GET", url, nil)
 
 	req.Header.Add("X-Redmine-API-Key", c.apikey)
