@@ -35,5 +35,6 @@ var issue = cli.Command{
 }
 
 var createIssue = cli.Command{
-	Name: "Create",
+	Name:   "Create",
+	Action: actions.CreateIssue,
 }

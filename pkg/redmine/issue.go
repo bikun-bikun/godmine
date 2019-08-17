@@ -89,3 +89,9 @@ func (c *Client) GetIssues(projectID string) ([]Issue, error) {
 
 	return ir.Issues, nil
 }
+
+func (c *Client) CreateIssue(projectID string) (*Issue, error) {
+	url := c.endpoint
+	req, err := http.NewRequest(http.MethodPost, url)
+
+}

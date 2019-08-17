@@ -4,11 +4,21 @@ import (
 	"github.com/urfave/cli"
 )
 
-func NewCommand() (cmd []cli.Command) {
+type Commands struct {
+	cli.Commands
+	endpoint string
+	apikey   string
+}
 
-	cmd = []cli.Command{
-		config,
-		issue,
+func NewCommand() (cmd Commands) {
+
+	cmd = Commands{
+		[]cli.Command{
+			config,
+			issue,
+		},
+		"hoge",
+		"huga",
 	}
 
 	return cmd

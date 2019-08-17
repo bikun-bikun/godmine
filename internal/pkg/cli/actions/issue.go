@@ -3,19 +3,20 @@ package actions
 import (
 	"encoding/json"
 	"fmt"
+	cf "github.com/bikun-bikun/godmine/internal/pkg/config"
 	"github.com/bikun-bikun/godmine/pkg/redmine"
 	"github.com/urfave/cli"
-
-	cf "github.com/bikun-bikun/godmine/internal/pkg/config"
 )
 
 func Issue(ctx *cli.Context) error {
 
-	cnf, err := cf.Load(ctx.String("profile"))
-	if err != nil {
-		return err
-	}
-	c := redmine.NewClient(cnf.Endpoint, cnf.Apikey)
+	cnf := loadConfig(ctx.String("profile"))
+	/*
+		if err != nil {
+			return err
+		}
+	*/
+	c := redmine.NewClient(cnf.endpoint, cnf.apikey)
 
 	ir, err := c.GetIssues(ctx.String("project"))
 
@@ -43,5 +44,9 @@ func IssueTemplate(ctx *cli.Context) error {
 
 func CreateIssue(ctx *cli.Context) error {
 
+	return nil
+}
+
+func createTemplate(ctx *cli.Context) error {
 	return nil
 }
