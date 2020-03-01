@@ -1,3 +1,5 @@
+github.com/fabulous-tech/go-redmine v0.0.0-20200226132857-4efaec6c97e5 h1:Ooai9WJC3wXlrR2AQVCoXQafmgWYWU0BkMszAMHIYCI=
+github.com/fabulous-tech/go-redmine v0.0.0-20200226132857-4efaec6c97e5/go.mod h1:oU9Hn8OgNgGiSUSLh3k+xG/DQurbtmnQ14fpPVhR1MM=
 github.com/go-yaml/yaml v2.1.0+incompatible h1:RYi2hDdss1u4YE7GwixGzWwVo47T8UQwnTLB6vQiq+o=
 github.com/go-yaml/yaml v2.1.0+incompatible/go.mod h1:w2MrLa16VYP0jy6N7M5kHaCkaLENm+P+Tv+MfurjSw0=
 github.com/kr/pretty v0.1.0 h1:L/CwN0zerZDmRFUapSPitk6f+Q3+0za1rQkzVuMiMFI=
